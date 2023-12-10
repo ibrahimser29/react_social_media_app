@@ -85,7 +85,7 @@ import { QUERY_KEYS } from "./queryKeys";
         postId: string;
         userId: string;
       }) => savePost(postId, userId),
-      onSuccess: (data) => {
+      onSuccess: () => {
         queryClient.invalidateQueries({
           queryKey: [QUERY_KEYS.GET_RECENT_POSTS],
         });
@@ -103,7 +103,7 @@ import { QUERY_KEYS } from "./queryKeys";
     const queryClient = useQueryClient();
     return useMutation({
       mutationFn: (savedRecordId: string) => deleteSavedPost(savedRecordId),
-      onSuccess: (data) => {
+      onSuccess: () => {
         queryClient.invalidateQueries({
           queryKey: [QUERY_KEYS.GET_RECENT_POSTS],
         });
@@ -150,7 +150,7 @@ import { QUERY_KEYS } from "./queryKeys";
 
     return useMutation({
       mutationFn: ({postId, imageId}: {postId: string, imageId: string}) => deletePost(postId, imageId),
-      onSuccess: (data) => {
+      onSuccess: () => {
         queryClient.invalidateQueries({
           queryKey: [QUERY_KEYS.GET_RECENT_POSTS]
         })
@@ -180,6 +180,7 @@ import { QUERY_KEYS } from "./queryKeys";
         const lastId = lastPage.documents[lastPage.documents.length - 1].$id;
         return lastId;
       },
+      initialPageParam: null,
     });
   };
   

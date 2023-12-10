@@ -19,9 +19,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { useCreateUserAccount, useSignInAccount } from "@/lib/react-query/queriesAndMutations"
 import { useUserContext } from "@/context/AuthContext"
 
-const formSchema = z.object({
-  username: z.string().min(2).max(50),
-})
+
 
 const SignupForm = () => {
 
